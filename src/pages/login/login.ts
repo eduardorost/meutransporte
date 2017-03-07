@@ -27,7 +27,7 @@ export class LoginPage {
           this.nav.setRoot(HomePage)
         });
       } else {
-        this.showError("Access Denied");
+        this.showError("Usuario ou Senha inválida.");
       }
     },
       error => {
@@ -37,7 +37,7 @@ export class LoginPage {
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Aguarde...'
     });
     this.loading.present();
   }
@@ -48,7 +48,7 @@ export class LoginPage {
     });
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: 'Erro',
       subTitle: text,
       buttons: ['OK']
     });

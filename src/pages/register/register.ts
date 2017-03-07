@@ -8,21 +8,26 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = {email: '', password: ''};
+  user = { nome: '', cpf: '', telefone: '', email: '', password: '', confPassword: '' };
  
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
  
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
+    if(this.user.password != this.user.confPassword) {
+      this.showPopup("Erro", "Senha não confere com sua confirmação.");
+      return;
+    }
+
+    this.auth.register(this.user).subscribe(success => {
       if (success) {
         this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
+          this.showPopup("Successo", "Conta criada com sucesso.");
       } else {
-        this.showPopup("Error", "Problem creating account.");
+        this.showPopup("Erro", "Problema ao criar conta.");
       }
     },
     error => {
-      this.showPopup("Error", error);
+      this.showPopup("Erro", error);
     });
   }
  

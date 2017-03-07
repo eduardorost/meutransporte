@@ -13,11 +13,27 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="user.nome" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="user.cpf" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="user.telefone" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="user.email" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="user.password" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="user.confPassword" required></ion-input>
             </ion-item>
             
           </ion-list>
