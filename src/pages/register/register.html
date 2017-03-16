@@ -6,34 +6,78 @@
  
 <ion-content class="login-content" padding>
   <div class="login-box">
+    <ion-row>
+        <ion-col>
+          <ion-list radio-group [(ngModel)]="userType">
+            <ion-label>Pessoa Física</ion-label><ion-radio value="pf"></ion-radio>
+            <ion-label>Pessoa Juridica</ion-label><ion-radio value="pj">Pessoa Juridica</ion-radio>
+          </ion-list>
+        </ion-col>
+      </ion-row>
     
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
+          <ion-list inset [hidden]="userType=='pj'">
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="user.nome" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="user.cpf" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="user.telefone" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="user.email" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="user.password" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="user.confPassword" [required]="userType=='pf'"></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row [hidden]="userType=='pf'">
+        <ion-col>
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="user.nome" required></ion-input>
+              <ion-input type="text" placeholder="Razão Social" name="nome" [(ngModel)]="empresa.razaoSocial" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="user.cpf" required></ion-input>
+              <ion-input type="text" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="user.telefone" required></ion-input>
+              <ion-input type="text" placeholder="RECEFITUR" name="recefitur" [(ngModel)]="empresa.recefitur" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="user.email" required></ion-input>
+              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="empresa.telefone" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="user.password" required></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="empresa.email" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="user.confPassword" required></ion-input>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="empresa.senha" [required]="userType=='pj'"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="empresa.confSenha" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
           </ion-list>
