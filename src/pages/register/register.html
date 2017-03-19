@@ -21,27 +21,31 @@
           <ion-list inset [hidden]="userType=='pj'">
             
             <ion-item>
-              <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="user.nome" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="usuario.pessoa.nome" [required]="userType=='pf'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="user.cpf" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="usuario.pessoa.cpf" [required]="userType=='pf'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="user.telefone" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.pessoa.telefone" [required]="userType=='pf'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="user.email" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="usuario.pessoa.email" [required]="userType=='pf'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="user.password" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="user.confPassword" [required]="userType=='pf'"></ion-input>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha" [required]="userType=='pf'"></ion-input>
             </ion-item>
             
           </ion-list>
@@ -53,31 +57,35 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Razão Social" name="nome" [(ngModel)]="empresa.razaoSocial" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Razão Social" name="nome" [(ngModel)]="usuario.empresa.nome" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="CNPJ" name="cnpj" [(ngModel)]="usuario.empresa.cnpj" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="RECEFITUR" name="recefitur" [(ngModel)]="empresa.recefitur" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="RECEFITUR" name="recefitur" [(ngModel)]="usuario.empresa.recefitur" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="empresa.telefone" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.empresa.telefone" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="empresa.email" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="usuario.empresa.email" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="empresa.senha" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Confirmação Senha" name="confPassword" [(ngModel)]="empresa.confSenha" [required]="userType=='pj'"></ion-input>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha" [required]="userType=='pj'"></ion-input>
             </ion-item>
             
           </ion-list>

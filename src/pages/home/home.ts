@@ -11,7 +11,7 @@ export class HomePage {
   username = '';
   constructor(private nav: NavController, private auth: AuthService) {
     let info = this.auth.getUserInfo().subscribe(
-      user => this.username = user.name,
+      user => this.username = user.empresa ? user.empresa.nome : user.pessoa.nome,
       error => console.log(error)
     );
   }

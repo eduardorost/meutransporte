@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { User } from '../models/user';
+import { Usuario } from '../models/usuario';
 
 import 'rxjs/add/operator/map';
 
@@ -56,7 +56,7 @@ export class AuthService {
       });
   }
 
-  public getUserInfo() : Observable<User> {
+  public getUserInfo() : Observable<Usuario> {
     return this.http.get(this.apiUrl + '/login/usuario', { headers: this.getHeaderToken() }).map((res: Response) => res.json());
   }
 

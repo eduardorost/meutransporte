@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/auth-service';
+import { UsuarioService } from '../providers/usuario-service';
 import { RegisterPage } from '../pages/register/register';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
@@ -29,7 +30,7 @@ import { Page2 } from '../pages/page2/page2';
     Page1,
     Page2
   ],
-  providers: [AuthService]
+  providers: [AuthService, UsuarioService]
   // providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule { }
