@@ -17,9 +17,13 @@ export class AuthService {
       return Observable.throw("Please insert credentials");
     } else {
       return Observable.create(observer => {
-        this.http.get(this.apiUrl + '/login', { headers: this.getHeaderBasicAuth(credentials) }).map((res: Response) => res.json())
+        this.http.get(this.apiUrl + '/login', { headers: this.getHeaderBasicAuth(credentials) })
           .subscribe(
-            data => { this.saveSession(data.session); observer.next(true); },
+            res => {
+              this.saveSession(res.headers.get("x-auth-token"));
+              this.saveUsuario(res.text());
+              observer.next(true); 
+            },
             err => observer.next(false),
             () => observer.complete()
           );
@@ -27,26 +31,8 @@ export class AuthService {
     }
   }
 
-  private saveSession(session) {
-    if (session) {
-      localStorage.setItem('X-AUTH-TOKEN', session);
-    }
-  }
-
   public getSession() : string {
       return localStorage.getItem('X-AUTH-TOKEN');
-  }
-
-  private getHeaderBasicAuth(credentials) : Headers {
-    let headers = new Headers();
-    headers.append("Authorization", "Basic " + btoa(credentials.username + ":" + credentials.password));
-    return headers;
-  }
-
-  private getHeaderToken() : Headers {
-    let headers = new Headers();
-    headers.append("X-AUTH-TOKEN", this.getSession());
-    return headers;
   }
 
   public register(user) {
@@ -56,15 +42,39 @@ export class AuthService {
       });
   }
 
-  public getUserInfo() : Observable<Usuario> {
-    return this.http.get(this.apiUrl + '/login/usuario', { headers: this.getHeaderToken() }).map((res: Response) => res.json());
+  public getUsuario() : Usuario {
+    return JSON.parse(localStorage.getItem('USUARIO'));
   }
 
   public logout() {
     return Observable.create(observer => {
       localStorage.removeItem('X-AUTH-TOKEN');
+      localStorage.removeItem('USUARIO');
       observer.next(true);
       observer.complete();
     });
   }
+
+  public getHeaderToken() : Headers {
+    let headers = new Headers();
+    headers.append("X-AUTH-TOKEN", this.getSession());
+    return headers;
+  }
+
+  private getHeaderBasicAuth(credentials) : Headers {
+    let headers = new Headers();
+    headers.append("Authorization", "Basic " + btoa(credentials.username + ":" + credentials.password));
+    return headers;
+  }
+
+  private saveSession(session) {
+    if (session) {
+      localStorage.setItem('X-AUTH-TOKEN', session);
+    }
+  }
+
+  private saveUsuario(usuario) {
+    localStorage.setItem('USUARIO', usuario);
+  }
+
 }

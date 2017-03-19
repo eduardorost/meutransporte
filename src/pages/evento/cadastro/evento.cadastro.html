@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Cadastrar Evento</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<form (ngSubmit)="cadastrar()" #eventoForm="ngForm">
+		<ion-row>
+			<ion-col>
+				<ion-list inset>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="evento.nome"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Descrição" name="descricao" [(ngModel)]="evento.descricao"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Link Evento" name="link" [(ngModel)]="evento.link"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Tipo Evento" name="tipo" [(ngModel)]="evento.tipo"></ion-input>
+					</ion-item>
+					
+    			<ion-item-divider color="light">Endereço</ion-item-divider>
+
+					<ion-item>
+						<ion-input type="text" placeholder="CEP" name="cep" [(ngModel)]="evento.endereco.cep"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Logradouro" name="logradouro" [(ngModel)]="evento.endereco.logradouro"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Cidade" name="cidade" [(ngModel)]="evento.cidade.nome"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input type="text" placeholder="UF" name="uf" [(ngModel)]="evento.cidade.uf"></ion-input>
+					</ion-item>
+
+
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col class="signup-col">
+				<button ion-button class="submit-btn" full type="submit" [disabled]="!eventoForm.form.valid">Cadastrar</button>
+			</ion-col>
+		</ion-row>
+	</form>
+
+</ion-content>

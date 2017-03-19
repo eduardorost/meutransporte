@@ -3,17 +3,17 @@ import { NavController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
 
+import { Usuario } from '../../models/usuario';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = '';
+  usuario: Usuario;
+
   constructor(private nav: NavController, private auth: AuthService) {
-    let info = this.auth.getUserInfo().subscribe(
-      user => this.username = user.empresa ? user.empresa.nome : user.pessoa.nome,
-      error => console.log(error)
-    );
+    this.usuario = this.auth.getUsuario();
   }
 
   public logout() {
@@ -22,15 +22,3 @@ export class HomePage {
     });
   }
 }
-
-// @Component({
-//   selector: 'page-page1',
-//   templateUrl: 'page1.html'
-// })
-// export class Page1 {
-
-//   constructor(public navCtrl: NavController) {
-    
-//   }
-
-// }

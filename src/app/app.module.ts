@@ -3,11 +3,13 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { EventoVisualizacaoPage } from '../pages/evento/visualizacao/evento.visualizacao';
+import { EventoCadastroPage } from '../pages/evento/cadastro/evento.cadastro';
+import { Page2 } from '../pages/page2/page2';
 import { AuthService } from '../providers/auth-service';
 import { UsuarioService } from '../providers/usuario-service';
-import { RegisterPage } from '../pages/register/register';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
+import { EventoService } from '../providers/evento-service';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { Page2 } from '../pages/page2/page2';
     HomePage,
     LoginPage,
     RegisterPage,
-    Page1,
+    EventoVisualizacaoPage,
+    EventoCadastroPage,
     Page2
   ],
   imports: [
@@ -27,10 +30,11 @@ import { Page2 } from '../pages/page2/page2';
     HomePage,
     LoginPage,
     RegisterPage,
-    Page1,
+    EventoVisualizacaoPage,
+    EventoCadastroPage,
     Page2
   ],
-  providers: [AuthService, UsuarioService]
+  providers: [AuthService, UsuarioService, EventoService]
   // providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule { }
