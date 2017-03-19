@@ -34,6 +34,16 @@ export class RegisterPage {
       this.showPopup("Erro", error);
     });
   }
+
+  public adicionarVeiculo($event) {
+    $event.preventDefault();
+    this.usuario.empresa.veiculos.push({ capacidade: '',  modelo: '', placa: '' });
+  }
+
+  public removerVeiculo($event, index) {
+    $event.preventDefault();
+    this.usuario.empresa.veiculos.splice(index, 1);
+  }
  
   showPopup(title, text) {
     let alert = this.alertCtrl.create({

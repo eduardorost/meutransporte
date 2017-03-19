@@ -3,101 +3,129 @@
     <ion-title>Register</ion-title>
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content class="login-content" padding>
   <div class="login-box">
     <ion-row>
-        <ion-col>
-          <ion-list radio-group [(ngModel)]="userType">
-            <ion-label>Pessoa Física</ion-label><ion-radio value="pf"></ion-radio>
-            <ion-label>Pessoa Juridica</ion-label><ion-radio value="pj">Pessoa Juridica</ion-radio>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    
-    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <ion-col>
+        <ion-list radio-group [(ngModel)]="userType">
+          <ion-label>Pessoa Física</ion-label>
+          <ion-radio value="pf"></ion-radio>
+          <ion-label>Pessoa Juridica</ion-label>
+          <ion-radio value="pj">Pessoa Juridica</ion-radio>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <form (ngSubmit)="register()" #pessoaForm="ngForm" [hidden]="userType=='pj'">
       <ion-row>
         <ion-col>
-          <ion-list inset [hidden]="userType=='pj'">
-            
+          <ion-list inset>
+
             <ion-item>
               <ion-input type="text" placeholder="Nome" name="nome" [(ngModel)]="usuario.pessoa.nome" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="usuario.pessoa.cpf" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.pessoa.telefone" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="usuario.pessoa.email" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" required></ion-input>
+              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" required></ion-input>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha" [required]="userType=='pf'"></ion-input>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha"
+                [required]="userType=='pf'"></ion-input>
             </ion-item>
-            
+
           </ion-list>
         </ion-col>
       </ion-row>
 
-      <ion-row [hidden]="userType=='pf'">
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!pessoaForm.form.valid">Register</button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <form (ngSubmit)="register()" #empresaForm="ngForm" [hidden]="userType=='pf'">
+
+      <ion-row>
         <ion-col>
           <ion-list inset>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Razão Social" name="nome" [(ngModel)]="usuario.empresa.nome" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="CNPJ" name="cnpj" [(ngModel)]="usuario.empresa.cnpj" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="RECEFITUR" name="recefitur" [(ngModel)]="usuario.empresa.recefitur" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.empresa.telefone" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="usuario.empresa.email" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" required></ion-input>
+              <ion-input type="text" placeholder="Login" name="login" [(ngModel)]="usuario.login" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" required></ion-input>
+              <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="usuario.senha" [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
             <ion-item>
-              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha" [required]="userType=='pj'"></ion-input>
+              <ion-input type="password" placeholder="Confirmação Senha" name="confirmacaoSenha" [(ngModel)]="usuario.confirmacaoSenha"
+                [required]="userType=='pj'"></ion-input>
             </ion-item>
-            
+
+          </ion-list>
+
+          <ion-list>
+            <ion-list-header>
+              <button type="button" ion-button clear icon-left (click)="adicionarVeiculo($event)">
+                <ion-icon name="md-add-circle"></ion-icon>
+                Adicionar Veículo
+              </button>
+            </ion-list-header>
+            <ion-item *ngFor='let veiculo of usuario.empresa.veiculos; let i = index; let first = first'>
+              <button ion-button clear color="danger" item-left [hidden]="first" (click)="removerVeiculo($event, i)"><ion-icon name="md-remove-circle"></ion-icon></button>
+              <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="usuario.empresa.veiculos[i].modelo" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Placa" name="placa" [(ngModel)]="usuario.empresa.veiculos[i].placa" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Capacidade" name="capacidade" [(ngModel)]="usuario.empresa.veiculos[i].capacidade" [required]="userType=='pj'"></ion-input>
+            </ion-item>
+
           </ion-list>
         </ion-col>
       </ion-row>
-      
+
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!empresaForm.form.valid">Register</button>
         </ion-col>
       </ion-row>
-      
+
     </form>
   </div>
 </ion-content>
