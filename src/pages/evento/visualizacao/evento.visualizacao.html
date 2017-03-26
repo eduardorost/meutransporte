@@ -8,6 +8,21 @@
 </ion-header>
 
 <ion-content padding>
+	<ion-card *ngFor='let evento of eventos'>
+		<!--<img src="img/nin-live.png" />-->
+		<ion-card-content>
+			<!--<ion-card-title>
+				{{evento.nome}}
+			</ion-card-title>-->
+			<ion-item>
+				<h2>{{evento.nome}}</h2>
+				<p>{{evento.cidade.nome}} - {{evento.data | date: 'dd/MM/yyyy'}}</p>
+			</ion-item>
+			<p>
+				{{evento.descricao}}
+			</p>
+		</ion-card-content>
+	</ion-card>
 
 	<ion-fab right bottom>
 		<button type="button" color="secondary" ion-fab clear (click)="cadastrarEvento()">

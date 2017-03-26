@@ -26,10 +26,15 @@
 					</ion-item>
 
 					<ion-item>
+						<ion-label>Data</ion-label>
+						<ion-datetime displayFormat="DD/MM/YYYY" name="data" [(ngModel)]="evento.data"></ion-datetime>
+					</ion-item>
+
+					<ion-item>
 						<ion-input type="text" placeholder="Tipo Evento" name="tipo" [(ngModel)]="evento.tipo"></ion-input>
 					</ion-item>
-					
-    			<ion-item-divider color="light">Endereço</ion-item-divider>
+
+					<ion-item-divider color="light">Endereço</ion-item-divider>
 
 					<ion-item>
 						<ion-input type="text" placeholder="CEP" name="cep" [(ngModel)]="evento.endereco.cep"></ion-input>
@@ -42,11 +47,6 @@
 					<ion-item>
 						<ion-input type="text" placeholder="Cidade" name="cidade" [(ngModel)]="evento.cidade.nome"></ion-input>
 					</ion-item>
-
-					<ion-item>
-						<ion-input type="text" placeholder="UF" name="uf" [(ngModel)]="evento.cidade.uf"></ion-input>
-					</ion-item>
-
 
 				</ion-list>
 			</ion-col>

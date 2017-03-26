@@ -14,7 +14,7 @@ export class EventoCadastroPage {
   }
 
   createSuccess = false;
-  evento = { nome: '', descricao: '', link: '', tipo: '', endereco: { cep: '', logradouro: '' }, cidade: { nome: '', uf: '' } };
+  evento = { nome: '', descricao: '', link: '', data: '', tipo: '', endereco: { cep: '', logradouro: '' }, cidade: { nome: '', uf: 'RS' } };
 
   cadastrar() {
     this.eventoService.cadastrarEvento(this.evento).subscribe((success, evento) => {
