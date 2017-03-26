@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-
 import { NavController, AlertController } from 'ionic-angular';
+import { Camera } from 'ionic-native'
+
 import { EventoService } from '../../../providers/evento-service';
 
 @Component({
@@ -14,7 +15,7 @@ export class EventoCadastroPage {
   }
 
   createSuccess = false;
-  evento = { nome: '', descricao: '', link: '', data: '', tipo: '', endereco: { cep: '', logradouro: '' }, cidade: { nome: '', uf: 'RS' } };
+  evento = { nome: '', descricao: '', link: '', data: '', tipo: '', foto: '', endereco: { cep: '', logradouro: '' }, cidade: { nome: '', uf: 'RS' } };
 
   cadastrar() {
     this.eventoService.cadastrarEvento(this.evento).subscribe((success, evento) => {
@@ -22,12 +23,25 @@ export class EventoCadastroPage {
         this.createSuccess = true;
         this.showPopup("Successo", "Evento cadastrado com sucesso.");
       } else {
-        this.showPopup("Erro", "Erro ao salvar evento.");        
+        this.showPopup("Erro", "Erro ao salvar evento.");
       }
     },
       error => {
         this.showPopup("Erro", error);
       });
+  }
+
+  selecionarFoto(event) {
+    event.preventDefault();
+    
+    Camera.getPicture({
+      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType: Camera.DestinationType.DATA_URL
+    }).then((imageData) => {
+      this.evento.foto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   showPopup(title, text) {

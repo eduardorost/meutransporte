@@ -8,7 +8,7 @@ import { AuthService } from './auth-service';
 @Injectable()
 export class EventoService {
 
-  private apiUrl = 'http://localhost:9000/v1/api';
+  private apiUrl = 'http://192.168.0.103:9000/v1/api';
 
   constructor(public http: Http, public authService: AuthService) {
   }

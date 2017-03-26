@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UsuarioService {
-  private apiUrl = 'http://localhost:9000/v1/api';
+  private apiUrl = 'http://192.168.0.103:9000/v1/api';
 
   constructor(private http: Http) { }
 

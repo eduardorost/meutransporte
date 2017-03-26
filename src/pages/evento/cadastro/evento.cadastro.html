@@ -34,6 +34,22 @@
 						<ion-input type="text" placeholder="Tipo Evento" name="tipo" [(ngModel)]="evento.tipo"></ion-input>
 					</ion-item>
 
+					<ion-card>
+						<img [src]="evento.foto" *ngIf="evento.foto" />
+
+						<ion-row>
+							<ion-col>
+								<button ion-button icon-left clear small (click)="selecionarFoto($event)">
+        							<ion-icon name="md-photos"></ion-icon>
+        							<div>Galeria</div>
+     	 						</button>
+							</ion-col>
+						</ion-row>
+
+					</ion-card>
+
+					<!--<button ion-button color="primary" (click)="selecionarFoto()">Selecionar foto</button>-->
+
 					<ion-item-divider color="light">Endereço</ion-item-divider>
 
 					<ion-item>
