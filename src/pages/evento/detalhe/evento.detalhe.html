@@ -1,0 +1,68 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Detalhe Evento</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+		<ion-row>
+			<ion-col>
+				<ion-list inset>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Nome" name="nome" [(ngModel)]="evento.nome"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Descrição" name="descricao" [(ngModel)]="evento.descricao"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Link Evento" name="link" [(ngModel)]="evento.link"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-label>Data</ion-label>
+						<ion-datetime disabled="{{canEdit}}" displayFormat="DD/MM/YYYY" name="data" [(ngModel)]="evento.data"></ion-datetime>
+					</ion-item>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Tipo Evento" name="tipo" [(ngModel)]="evento.tipo"></ion-input>
+					</ion-item>
+
+					<ion-card>
+						<img [src]="evento.foto" *ngIf="evento.foto" />
+
+						<ion-row [hidden]="canEdit">
+							<ion-col>
+								<button ion-button icon-left clear small (click)="selecionarFoto($event)">
+        							<ion-icon name="md-photos"></ion-icon>
+        							<div>Galeria</div>
+     	 						</button>
+							</ion-col>
+						</ion-row>
+
+					</ion-card>
+
+					<ion-item-divider color="light">Endereço</ion-item-divider>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="CEP" name="cep" [(ngModel)]="evento.endereco.cep"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Logradouro" name="logradouro" [(ngModel)]="evento.endereco.logradouro"></ion-input>
+					</ion-item>
+
+					<ion-item>
+						<ion-input disabled="{{canEdit}}" type="text" placeholder="Cidade" name="cidade" [(ngModel)]="evento.cidade.nome"></ion-input>
+					</ion-item>
+
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+</ion-content>

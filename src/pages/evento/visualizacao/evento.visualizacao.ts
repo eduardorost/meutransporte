@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { EventoCadastroPage } from '../cadastro/evento.cadastro';
+import { EventoDetalhePage } from '../detalhe/evento.detalhe';
 
 import { EventoService } from '../../../providers/evento-service'
 
@@ -18,6 +19,10 @@ export class EventoVisualizacaoPage {
 
   public cadastrarEvento() {
     this.navCtrl.push(EventoCadastroPage);
+  }
+
+  public detalheEvento(evento) {
+    this.navCtrl.push(EventoDetalhePage,  { evento: evento })
   }
 
 }

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-	<ion-card *ngFor='let evento of eventos'>
+	<ion-card *ngFor='let evento of eventos' tappable (click)="detalheEvento(evento)">
 		<img [src]="evento.foto" *ngIf="evento.foto" />
 		<ion-card-content>
 			<ion-item>
