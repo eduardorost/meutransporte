@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Selecione um Veiculo</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+        		<span ion-text color="primary" showWhen="ios">Cancelar</span>
+        		<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-item *ngFor='let veiculo of veiculos; let i = index;' (click)="registrarEmpresaEvento(veiculo)">
+			<ion-input type="text" disabled [ngModel]="veiculos[i].modelo"></ion-input>
+			<ion-input type="text" disabled [ngModel]="veiculos[i].placa"></ion-input>
+			<ion-input type="text" disabled [ngModel]="veiculos[i].capacidade"></ion-input>
+		</ion-item>
+
+	</ion-list>
+</ion-content>

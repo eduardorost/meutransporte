@@ -15,8 +15,8 @@ export class EventoService {
 
   eventos() {
     return this.http.get(this.apiUrl + '/eventos', { headers: this.authService.getHeaderToken() })
-        .map(res => res.json());
-        
+      .map(res => res.json());
+
   }
 
   cadastrarEvento(evento) {
@@ -27,7 +27,31 @@ export class EventoService {
         evento => observer.next(true, evento),
         err => observer.next(false),
         () => observer.complete()
-      );
+        );
+    });
+  }
+
+  alterarEvento(evento) {
+    return Observable.create(observer => {
+      this.http.put(this.apiUrl + '/eventos/', evento, { headers: this.authService.getHeaderToken() })
+        .map(res => res.json())
+        .subscribe(
+          evento => observer.next(true, evento),
+          err => observer.next(false),
+          () => observer.complete()
+        );
+    });
+  }
+
+  registrarEmpresaEvento(evento, veiculo) {
+    return Observable.create(observer => {
+      this.http.post(this.apiUrl + '/evento/transportes', { evento: evento, veiculo: veiculo }, { headers: this.authService.getHeaderToken() })
+        .map(res => res.json())
+        .subscribe(
+          evento => observer.next(true),
+          err => observer.next(false),
+          () => observer.complete()
+        );
     });
   }
 

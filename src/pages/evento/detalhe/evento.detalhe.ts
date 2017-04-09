@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Camera } from 'ionic-native'
 
 import { EventoService } from '../../../providers/evento-service';
 import { AuthService } from '../../../providers/auth-service';
+import { SelecionarVeiculoPage } from './selecionar-veiculo/selecionar.veiculo';
 
 @Component({
   selector: 'page-evento-detalhe',
@@ -13,31 +14,39 @@ export class EventoDetalhePage {
 
   evento;
   canEdit;
+  canRegisterCompany;
+  alterSuccess = false;
+  usuario;
 
-  constructor(public navCtrl: NavController, public params: NavParams, public eventoService: EventoService, public authService: AuthService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public params: NavParams, public eventoService: EventoService, public authService: AuthService, private alertCtrl: AlertController, public modalCtrl: ModalController) {
     this.evento = params.get("evento");
-    this.canEdit = this.evento.usuario.id == authService.getUsuario().id;
+    this.usuario = authService.getUsuario();
+    this.canEdit = this.evento.usuario.id == this.usuario.id;
+    this.canRegisterCompany = this.usuario.empresa != null;
   }
 
-  alterSuccess = false;
+  editar() {
+    this.eventoService.alterarEvento(this.evento).subscribe((success, evento) => {
+      if (success) {
+        this.alterSuccess = true;
+        this.showPopup("Successo", "Evento alterado com sucesso.");
+      } else {
+        this.showPopup("Erro", "Erro ao alterar evento.");
+      }
+    },
+      error => {
+        this.showPopup("Erro", error);
+      });
+  }
 
-  // cadastrar() {
-  //   this.eventoService.cadastrarEvento(this.evento).subscribe((success, evento) => {
-  //     if (success) {
-  //       this.createSuccess = true;
-  //       this.showPopup("Successo", "Evento cadastrado com sucesso.");
-  //     } else {
-  //       this.showPopup("Erro", "Erro ao salvar evento.");
-  //     }
-  //   },
-  //     error => {
-  //       this.showPopup("Erro", error);
-  //     });
-  // }
+  selecionarVeiculo() {
+      let modal = this.modalCtrl.create(SelecionarVeiculoPage, { "evento": this.evento });
+      modal.present();
+  }
 
   selecionarFoto(event) {
     event.preventDefault();
-    
+
     Camera.getPicture({
       sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
       destinationType: Camera.DestinationType.DATA_URL
@@ -48,22 +57,22 @@ export class EventoDetalhePage {
     });
   }
 
-  // showPopup(title, text) {
-  //   let alert = this.alertCtrl.create({
-  //     title: title,
-  //     subTitle: text,
-  //     buttons: [
-  //       {
-  //         text: 'OK',
-  //         handler: data => {
-  //           if (this.createSuccess) {
-  //             this.navCtrl.pop();
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   alert.present();
-  // }
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.alterSuccess) {
+              this.navCtrl.pop();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
 }
