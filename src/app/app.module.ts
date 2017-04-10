@@ -8,6 +8,7 @@ import { EventoVisualizacaoPage } from '../pages/evento/visualizacao/evento.visu
 import { EventoCadastroPage } from '../pages/evento/cadastro/evento.cadastro';
 import { EventoDetalhePage } from '../pages/evento/detalhe/evento.detalhe';
 import { SelecionarVeiculoPage } from '../pages/evento/detalhe/selecionar-veiculo/selecionar.veiculo';
+import { ListaTransporteEventoPage } from '../pages/evento/detalhe/lista-transporte/lista.transporte';
 import { Page2 } from '../pages/page2/page2';
 import { AuthService } from '../providers/auth-service';
 import { UsuarioService } from '../providers/usuario-service';
@@ -23,6 +24,7 @@ import { EventoService } from '../providers/evento-service';
     EventoCadastroPage,
     EventoDetalhePage,
     SelecionarVeiculoPage,
+    ListaTransporteEventoPage,
     Page2
   ],
   imports: [
@@ -38,6 +40,7 @@ import { EventoService } from '../providers/evento-service';
     EventoCadastroPage,
     EventoDetalhePage,
     SelecionarVeiculoPage,
+    ListaTransporteEventoPage,
     Page2
   ],
   providers: [AuthService, UsuarioService, EventoService]

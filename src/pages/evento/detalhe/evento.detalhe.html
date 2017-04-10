@@ -65,9 +65,10 @@
 			</ion-col>
 		</ion-row>
 
-		<!--TODO: LISTA DE TOPIQUES QUE IRÃO FAZER O TRANSPORTE DO EVENTO-->
-
 		<ion-row>
+			<ion-col class="signup-col">
+				<button ion-button class="submit-btn" full type="button" (click)="listaTransportes()">Transportes</button>
+			</ion-col>
 			<ion-col class="signup-col" [hidden]="!canRegisterCompany">
 				<button ion-button class="submit-btn" full type="button" (click)="selecionarVeiculo()">Levar</button>
 			</ion-col>

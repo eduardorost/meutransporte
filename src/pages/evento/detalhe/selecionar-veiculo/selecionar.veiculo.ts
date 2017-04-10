@@ -19,6 +19,10 @@ export class SelecionarVeiculoPage {
     this.veiculos = this.authService.getUsuario().empresa.veiculos;
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
   registrarEmpresaEvento(veiculo) {
     this.eventoService.registrarEmpresaEvento(this.evento, veiculo).subscribe((success) => {
       if (success) {

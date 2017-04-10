@@ -1,0 +1,20 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Transportes Disponíveis</ion-title>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card *ngFor='let transporte of evento.transportes'>
+		<ion-card-content>
+			<ion-item>
+				<h2>{{transporte.empresa.nome}}</h2>
+				<p>{{transporte.veiculo.modelo}}</p>
+			</ion-item>
+			<p>Lugares disponíveis: {{transporte.veiculo.capacidade - transporte.pessoas.length}}</p>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

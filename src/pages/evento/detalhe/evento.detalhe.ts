@@ -5,6 +5,7 @@ import { Camera } from 'ionic-native'
 import { EventoService } from '../../../providers/evento-service';
 import { AuthService } from '../../../providers/auth-service';
 import { SelecionarVeiculoPage } from './selecionar-veiculo/selecionar.veiculo';
+import { ListaTransporteEventoPage } from './lista-transporte/lista.transporte';
 
 @Component({
   selector: 'page-evento-detalhe',
@@ -37,6 +38,10 @@ export class EventoDetalhePage {
       error => {
         this.showPopup("Erro", error);
       });
+  }
+
+  listaTransportes() {
+    this.navCtrl.push(ListaTransporteEventoPage,  { evento: this.evento })
   }
 
   selecionarVeiculo() {
