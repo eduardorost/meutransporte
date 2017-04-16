@@ -36,21 +36,33 @@ export class EventoService {
       this.http.put(this.apiUrl + '/eventos/', evento, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
-          evento => observer.next(true, evento),
-          err => observer.next(false),
-          () => observer.complete()
+        evento => observer.next(true, evento),
+        err => observer.next(false),
+        () => observer.complete()
         );
     });
   }
 
   registrarEmpresaEvento(evento, veiculo) {
     return Observable.create(observer => {
-      this.http.post(this.apiUrl + '/eventos/'+ evento.id +'/transportes', { veiculo: veiculo }, { headers: this.authService.getHeaderToken() })
+      this.http.post(this.apiUrl + '/eventos/' + evento.id + '/transportes', { veiculo: veiculo }, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
-          evento => observer.next(true),
-          err => observer.next(false),
-          () => observer.complete()
+        evento => observer.next(true),
+        err => observer.next(false),
+        () => observer.complete()
+        );
+    });
+  }
+
+  registrarPessoaEventoTransporte(transporte) {
+    return Observable.create(observer => {
+      this.http.post(this.apiUrl + '/eventos/transportes/'+transporte.id+'/vincular/pessoa', null, { headers: this.authService.getHeaderToken() })
+        .map(res => res.json())
+        .subscribe(
+        evento => observer.next(true),
+        err => observer.next(false),
+        () => observer.complete()
         );
     });
   }

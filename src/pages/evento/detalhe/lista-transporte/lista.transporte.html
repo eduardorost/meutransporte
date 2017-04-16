@@ -9,7 +9,15 @@
 
 <ion-content padding>
 	<ion-card *ngFor='let transporte of evento.transportes'>
-		<ion-card-content>
+		<ion-card-content tappable (click)="registrarPessoaEventoTransporte(transporte)">
+			<div style="position: relative">
+				<ion-fab right top *ngIf="transporte.vinculoUsuarioLogado">
+					<button ion-fab>
+        				<ion-icon name='md-checkmark'></ion-icon>
+      				</button>
+				</ion-fab>
+			</div>
+
 			<ion-item>
 				<h2>{{transporte.empresa.nome}}</h2>
 				<p>{{transporte.veiculo.modelo}}</p>
