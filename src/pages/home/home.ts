@@ -14,11 +14,13 @@ import { Usuario } from '../../models/usuario';
 export class HomePage {
   usuario: Usuario;
   eventos;
+  eventosTransporte;
   menu = 'eventos';
 
   constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService) {
     this.usuario = this.auth.getUsuario();
     this.usuarioService.eventos(this.usuario.id).subscribe(eventos => this.eventos = eventos)
+    this.usuarioService.eventosTransporte(this.usuario.id).subscribe(eventos => this.eventosTransporte = eventos)
   }
 
   public detalheEvento(evento) {

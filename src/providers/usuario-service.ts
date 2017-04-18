@@ -18,6 +18,11 @@ export class UsuarioService {
       .map(res => res.json());
   }
 
+  eventosTransporte(id) {
+    return this.http.get(this.apiUrl + '/usuarios/'+ id +'/transportes/eventos', { headers: this.authService.getHeaderToken() })
+      .map(res => res.json());
+  }
+
   public salvar(usuario, userType) {
     usuario = JSON.parse(JSON.stringify(usuario));;
 

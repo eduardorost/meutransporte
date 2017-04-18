@@ -24,7 +24,7 @@ export class EventoVisualizacaoPage {
   }
 
   public detalheEvento(evento) {
-    this.navCtrl.push(EventoDetalhePage,  { evento: evento })
+    this.navCtrl.push(EventoDetalhePage,  { evento: evento, canEdit: true })
   }
 
   public logout() {

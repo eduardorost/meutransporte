@@ -47,15 +47,15 @@
 		
 		<div *ngSwitchCase="'transportes'">
 
-			<ion-card *ngFor='let eventoTransporte of usuario.pessoa.eventoTransportes' tappable (click)="detalheEventoTransporte(eventoTransporte.evento)">
-				<img [src]="eventoTransporte.evento.foto" *ngIf="eventoTransporte.evento.foto" />
+			<ion-card *ngFor='let evento of eventosTransporte' tappable (click)="detalheEventoTransporte(evento)">
+				<img [src]="evento.foto" *ngIf="evento.foto" />
 				<ion-card-content>
 					<ion-item>
-						<h2>{{eventoTransporte.evento.nome}}</h2>
-						<p>{{eventoTransporte.evento.cidade.nome}} - {{eventoTransporte.evento.data | date: 'dd/MM/yyyy'}}</p>
+						<h2>{{evento.nome}}</h2>
+						<p>{{evento.cidade.nome}} - {{evento.data | date: 'dd/MM/yyyy'}}</p>
 					</ion-item>
 					<p>
-						{{eventoTransporte.evento.descricao}}
+						{{evento.descricao}}
 					</p>
 				</ion-card-content>
 			</ion-card>

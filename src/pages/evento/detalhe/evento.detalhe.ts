@@ -22,7 +22,7 @@ export class EventoDetalhePage {
   constructor(public navCtrl: NavController, public params: NavParams, public eventoService: EventoService, public authService: AuthService, private alertCtrl: AlertController, public modalCtrl: ModalController) {
     this.evento = params.get("evento");
     this.usuario = authService.getUsuario();
-    this.canEdit = params.get("canEdit") || (this.evento.usuario && this.evento.usuario.id == this.usuario.id);
+    this.canEdit = params.get("canEdit") && (this.evento.usuario && this.evento.usuario.id == this.usuario.id);
     this.canRegisterCompany = this.usuario.empresa != null;
   }
 
