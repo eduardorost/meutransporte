@@ -16,7 +16,6 @@ export class EventoService {
   eventos() {
     return this.http.get(this.apiUrl + '/eventos', { headers: this.authService.getHeaderToken() })
       .map(res => res.json());
-
   }
 
   cadastrarEvento(evento) {

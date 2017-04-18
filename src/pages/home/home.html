@@ -15,7 +15,52 @@
 </ion-header>
 
 <ion-content class="home" padding>
-	<h3>Bem vindo, {{usuario.empresa ? usuario.empresa.nome : usuario.pessoa.nome}}!</h3>
+	<div padding>
+		<ion-segment [(ngModel)]="menu">
+			<ion-segment-button value="eventos">
+				Meus Eventos
+			</ion-segment-button>
+			<ion-segment-button value="transportes">
+				Eventos Transportes
+			</ion-segment-button>
+		</ion-segment>
+	</div>
 
-	<!--TODO: LISTA DE TOPIQUES QUE O USUÁRIO ESTÁ INSERIDO-->
+	<div [ngSwitch]="menu">
+		
+		<div *ngSwitchCase="'eventos'">
+
+			<ion-card *ngFor='let evento of eventos' tappable (click)="detalheEvento(evento)">
+				<img [src]="evento.foto" *ngIf="evento.foto" />
+				<ion-card-content>
+					<ion-item>
+						<h2>{{evento.nome}}</h2>
+						<p>{{evento.cidade.nome}} - {{evento.data | date: 'dd/MM/yyyy'}}</p>
+					</ion-item>
+					<p>
+						{{evento.descricao}}
+					</p>
+				</ion-card-content>
+			</ion-card>
+
+		</div>
+		
+		<div *ngSwitchCase="'transportes'">
+
+			<ion-card *ngFor='let eventoTransporte of usuario.pessoa.eventoTransportes' tappable (click)="detalheEventoTransporte(eventoTransporte.evento)">
+				<img [src]="eventoTransporte.evento.foto" *ngIf="eventoTransporte.evento.foto" />
+				<ion-card-content>
+					<ion-item>
+						<h2>{{eventoTransporte.evento.nome}}</h2>
+						<p>{{eventoTransporte.evento.cidade.nome}} - {{eventoTransporte.evento.data | date: 'dd/MM/yyyy'}}</p>
+					</ion-item>
+					<p>
+						{{eventoTransporte.evento.descricao}}
+					</p>
+				</ion-card-content>
+			</ion-card>
+
+		</div>
+
+	</div>
 </ion-content>

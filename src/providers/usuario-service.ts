@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Usuario } from '../models/usuario';
+import { AuthService } from './auth-service';
 
 import 'rxjs/add/operator/map';
 
@@ -10,7 +11,12 @@ import 'rxjs/add/operator/map';
 export class UsuarioService {
   private apiUrl = 'http://192.168.56.1:9000/v1/api';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, public authService: AuthService) { }
+
+  eventos(id) {
+    return this.http.get(this.apiUrl + '/usuarios/'+ id +'/eventos', { headers: this.authService.getHeaderToken() })
+      .map(res => res.json());
+  }
 
   public salvar(usuario, userType) {
     usuario = JSON.parse(JSON.stringify(usuario));;
