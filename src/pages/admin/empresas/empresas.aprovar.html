@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Admin</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor='let empresa of empresas'>
+    <ion-card-content (click)="presentActionSheet(empresa.id)">
+      <ion-item>
+        <h2>{{empresa.nome}} - {{empresa.cnpj}}</h2>
+        <p>telefone: {{empresa.telefone}}, email: {{empresa.email}}, recefitur: {{empresa.recefitur}}</p>
+      </ion-item>
+
+      <ion-list>
+        <ion-item *ngFor='let veiculo of empresa.veiculos'>
+          <ion-input type="text" disabled placeholder="Modelo" name="modelo" ngValue="" [(ngModel)]="veiculo.modelo"></ion-input>
+          <ion-input type="text" disabled placeholder="Placa" name="placa" [(ngModel)]="veiculo.placa"></ion-input>
+          <ion-input type="text" disabled placeholder="Capacidade" name="capacidade" [(ngModel)]="veiculo.capacidade"></ion-input>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

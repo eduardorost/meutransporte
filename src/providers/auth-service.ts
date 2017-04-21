@@ -14,7 +14,7 @@ export class AuthService {
 
   public login(credentials) {
     if (credentials.username === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
+      return Observable.throw("é obrigatório inserir as credenciais.");
     } else {
       return Observable.create(observer => {
         this.http.get(this.apiUrl + '/login', { headers: this.getHeaderBasicAuth(credentials) })
@@ -22,9 +22,9 @@ export class AuthService {
             res => {
               this.saveSession(res.headers.get("x-auth-token"));
               this.saveUsuario(res.text());
-              observer.next(true); 
+              observer.next({allowed: true}); 
             },
-            err => observer.next(false),
+            err => observer.next({allowed: false, message: err.json().message}),
             () => observer.complete()
           );
       });

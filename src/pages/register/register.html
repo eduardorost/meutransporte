@@ -113,7 +113,7 @@
               <button ion-button clear color="danger" item-left [hidden]="first" (click)="removerVeiculo($event, i)"><ion-icon name="md-remove-circle"></ion-icon></button>
               <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="usuario.empresa.veiculos[i].modelo" [required]="userType=='pj'"></ion-input>
               <ion-input type="text" placeholder="Placa" name="placa" [(ngModel)]="usuario.empresa.veiculos[i].placa" [required]="userType=='pj'"></ion-input>
-              <ion-input type="text" placeholder="Capacidade" name="capacidade" [(ngModel)]="usuario.empresa.veiculos[i].capacidade" [required]="userType=='pj'"></ion-input>
+              <ion-input type="number" placeholder="Capacidade" name="capacidade" [(ngModel)]="usuario.empresa.veiculos[i].capacidade" [required]="userType=='pj'"></ion-input>
             </ion-item>
 
           </ion-list>

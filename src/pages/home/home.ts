@@ -15,7 +15,7 @@ export class HomePage {
   usuario: Usuario;
   eventos;
   eventosTransporte;
-  menu = 'eventos';
+  menu = 'transportes';
 
   constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService) {
     this.usuario = this.auth.getUsuario();

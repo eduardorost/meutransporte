@@ -7,7 +7,7 @@ import { AuthService } from '../providers/auth-service';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { EventoVisualizacaoPage } from '../pages/evento/visualizacao/evento.visualizacao';
-import { Page2 } from '../pages/page2/page2';
+import { EmpresasAprovarPage } from '../pages/admin/empresas/empresas.aprovar';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,10 +23,12 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+
+    //TODO: ESCONDER ADMIN QUANDO NÃO FOR.
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Eventos', component: EventoVisualizacaoPage },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Admin', component: EmpresasAprovarPage }
     ];
   }
 

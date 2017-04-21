@@ -9,10 +9,11 @@ import { EventoCadastroPage } from '../pages/evento/cadastro/evento.cadastro';
 import { EventoDetalhePage } from '../pages/evento/detalhe/evento.detalhe';
 import { SelecionarVeiculoPage } from '../pages/evento/detalhe/selecionar-veiculo/selecionar.veiculo';
 import { ListaTransporteEventoPage } from '../pages/evento/detalhe/lista-transporte/lista.transporte';
-import { Page2 } from '../pages/page2/page2';
+import { EmpresasAprovarPage } from '../pages/admin/empresas/empresas.aprovar';
 import { AuthService } from '../providers/auth-service';
 import { UsuarioService } from '../providers/usuario-service';
 import { EventoService } from '../providers/evento-service';
+import { EmpresaService } from '../providers/empresa-service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { EventoService } from '../providers/evento-service';
     EventoDetalhePage,
     SelecionarVeiculoPage,
     ListaTransporteEventoPage,
-    Page2
+    EmpresasAprovarPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -41,9 +42,9 @@ import { EventoService } from '../providers/evento-service';
     EventoDetalhePage,
     SelecionarVeiculoPage,
     ListaTransporteEventoPage,
-    Page2
+    EmpresasAprovarPage
   ],
-  providers: [AuthService, UsuarioService, EventoService]
+  providers: [AuthService, UsuarioService, EventoService, EmpresaService]
   // providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule { }

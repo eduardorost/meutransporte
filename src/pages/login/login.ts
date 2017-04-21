@@ -22,14 +22,14 @@ export class LoginPage {
 
   public login() {
     this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
+    this.auth.login(this.registerCredentials).subscribe(res => {
+      if (res.allowed) {
         setTimeout(() => {
           this.loading.dismiss();
           this.nav.setRoot(HomePage)
         });
       } else {
-        this.showError("Usuario ou Senha inválida.");
+        this.showError(res.message);
       }
     },
       error => {
