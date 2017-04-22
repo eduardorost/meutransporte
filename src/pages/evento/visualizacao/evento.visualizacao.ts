@@ -15,8 +15,11 @@ import { AuthService } from '../../../providers/auth-service';
 export class EventoVisualizacaoPage {
   eventos;
 
-  constructor(public navCtrl: NavController, private eventoService: EventoService, private auth: AuthService) {
+  ionViewWillEnter() {
     this.eventoService.eventos().subscribe(eventos => this.eventos = eventos);
+  }
+
+  constructor(public navCtrl: NavController, private eventoService: EventoService, private auth: AuthService) {
   }
 
   public cadastrarEvento() {

@@ -17,10 +17,13 @@ export class HomePage {
   eventosTransporte;
   menu = 'transportes';
 
-  constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService) {
-    this.usuario = this.auth.getUsuario();
+  ionViewWillEnter() {
     this.usuarioService.eventos(this.usuario.id).subscribe(eventos => this.eventos = eventos)
     this.usuarioService.eventosTransporte(this.usuario.id).subscribe(eventos => this.eventosTransporte = eventos)
+  }
+
+  constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService) {
+    this.usuario = this.auth.getUsuario();
   }
 
   public detalheEvento(evento) {
