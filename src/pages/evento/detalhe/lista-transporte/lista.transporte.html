@@ -9,7 +9,7 @@
 
 <ion-content padding>
 	<ion-card *ngFor='let transporte of evento.transportes'>
-		<ion-card-content tappable (click)="registrarPessoaEventoTransporte(transporte)">
+		<ion-card-content tappable (click)="acaoTransporte(transporte)">
 			<div style="position: relative">
 				<ion-fab right top *ngIf="transporte.vinculoUsuarioLogado">
 					<button ion-fab>
@@ -25,4 +25,9 @@
 			<p>Lugares disponíveis: {{transporte.veiculo.capacidade - transporte.pessoas.length}}</p>
 		</ion-card-content>
 	</ion-card>
+	<ion-row *ngIf="vinculadoEvento">
+		<ion-col class="signup-col">
+			<button ion-button class="submit-btn" full type="button" (click)="removerUsuarioTransporte(evento)">Não irei mais</button>
+		</ion-col>
+	</ion-row>
 </ion-content>

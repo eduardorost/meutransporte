@@ -54,6 +54,28 @@ export class EventoService {
     });
   }
 
+  removerTransporte(id) {
+    return Observable.create(observer => {
+      this.http.delete(this.apiUrl + '/eventos/transportes/'+id, { headers: this.authService.getHeaderToken() })
+        .subscribe(
+        observer.next(true),
+        err => observer.next(false),
+        () => observer.complete()
+        );
+    });
+  }
+
+  removerUsuarioTransporte(evento) {
+    return Observable.create(observer => {
+      this.http.delete(this.apiUrl + '/eventos/' + evento.id + '/transportes', { headers: this.authService.getHeaderToken() })
+        .subscribe(
+        observer.next(true),
+        err => observer.next(false),
+        () => observer.complete()
+        );
+    });
+  }
+
   registrarPessoaEventoTransporte(transporte) {
     return Observable.create(observer => {
       this.http.post(this.apiUrl + '/eventos/transportes/'+transporte.id+'/vincular/pessoa', null, { headers: this.authService.getHeaderToken() })

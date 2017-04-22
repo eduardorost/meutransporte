@@ -98,10 +98,9 @@ export class EmpresasAprovarPage {
         },
         {
           text: 'Cancelar',
-          role: 'cancel', // will always sort to be on the bottom
+          role: 'cancel',
           icon: !this.platform.is('ios') ? 'close' : null,
           handler: () => {
-            console.log('Cancel clicked');
           }
         }
       ]

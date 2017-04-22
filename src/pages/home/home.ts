@@ -24,11 +24,11 @@ export class HomePage {
   }
 
   public detalheEvento(evento) {
-    this.nav.push(EventoDetalhePage,  { evento: evento, canEdit: true });
+    this.nav.push(EventoDetalhePage, { evento: evento, canEdit: true });
   }
 
   public detalheEventoTransporte(evento) {
-    this.nav.push(EventoDetalhePage,  { evento: evento, canEdit: false });
+    this.nav.push(EventoDetalhePage, { evento: evento, canEdit: false });
   }
 
   public logout() {
