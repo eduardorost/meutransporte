@@ -14,7 +14,9 @@ export class RegisterPage {
   empresa = { cnpj: '', email: '', nome: '', telefone: '', recefitur: '', veiculos: [ { capacidade: '',  modelo: '', placa: '' } ] };
   usuario = { empresa: this.empresa, login: '', pessoa: this.pessoa, senha: '', confirmacaoSenha: '', status: true };
  
-  constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService, private alertCtrl: AlertController) {}
+  constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService, private alertCtrl: AlertController) {
+    
+  }
  
   public register() {
     if(this.usuario.senha != this.usuario.confirmacaoSenha) {

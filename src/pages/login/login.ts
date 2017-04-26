@@ -16,7 +16,8 @@ export class LoginPage {
     
   }
 
-  public createAccount() {
+  public createAccount($event) {
+    $event.preventDefault();
     this.nav.push(RegisterPage);
   }
 
