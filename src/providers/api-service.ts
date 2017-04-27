@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private http: Http, private loadingCtrl: LoadingController) { }
 
-  public get(path, options) {
+  public get(path, options?) {
     this.showLoading()
     return Observable.create(observer => {
       this.http.get(this.apiUrl + path, options)
@@ -25,7 +25,7 @@ export class ApiService {
     });
   }
 
-  public post(path, data, options) {
+  public post(path, data, options?) {
     this.showLoading()
     return Observable.create(observer => {
       this.http.post(this.apiUrl + path, data, options)
@@ -40,7 +40,22 @@ export class ApiService {
     });
   }
 
-  public delete(path, options) {
+  public put(path, data, options?) {
+    this.showLoading()
+    return Observable.create(observer => {
+      this.http.put(this.apiUrl + path, data, options)
+        .subscribe(
+          res => observer.next(res),
+          err => observer.next(err), //TODO: VALIDAR 401
+          () => {
+            this.loading.dismiss();
+            observer.complete();
+          }
+        );
+    });
+  }
+
+  public delete(path, options?) {
     this.showLoading()
     return Observable.create(observer => {
       this.http.delete(this.apiUrl + path, options)

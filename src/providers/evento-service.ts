@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Headers } from '@angular/http';
+import { ApiService } from './api-service';
 import 'rxjs/add/operator/map';
 
 import { AuthService } from './auth-service';
@@ -8,19 +9,17 @@ import { AuthService } from './auth-service';
 @Injectable()
 export class EventoService {
 
-  private apiUrl = 'http://192.168.56.1:9000/v1/api';
-
-  constructor(public http: Http, public authService: AuthService) {
+  constructor(public authService: AuthService, private apiService: ApiService) {
   }
 
   eventos() {
-    return this.http.get(this.apiUrl + '/eventos', { headers: this.authService.getHeaderToken() })
+    return this.apiService.get('/eventos', { headers: this.authService.getHeaderToken() })
       .map(res => res.json());
   }
 
   cadastrarEvento(evento) {
     return Observable.create(observer => {
-      this.http.post(this.apiUrl + '/eventos', evento, { headers: this.authService.getHeaderToken() })
+      this.apiService.post('/eventos', evento, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
         evento => observer.next(true, evento),
@@ -32,7 +31,7 @@ export class EventoService {
 
   alterarEvento(evento) {
     return Observable.create(observer => {
-      this.http.put(this.apiUrl + '/eventos/', evento, { headers: this.authService.getHeaderToken() })
+      this.apiService.put('/eventos/', evento, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
         evento => observer.next(true, evento),
@@ -44,7 +43,7 @@ export class EventoService {
 
   registrarEmpresaEvento(evento, veiculo) {
     return Observable.create(observer => {
-      this.http.post(this.apiUrl + '/eventos/' + evento.id + '/transportes', { veiculo: veiculo }, { headers: this.authService.getHeaderToken() })
+      this.apiService.post('/eventos/' + evento.id + '/transportes', { veiculo: veiculo }, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
         evento => observer.next(true),
@@ -56,7 +55,7 @@ export class EventoService {
 
   removerTransporte(id) {
     return Observable.create(observer => {
-      this.http.delete(this.apiUrl + '/eventos/transportes/'+id, { headers: this.authService.getHeaderToken() })
+      this.apiService.delete('/eventos/transportes/' + id, { headers: this.authService.getHeaderToken() })
         .subscribe(
         observer.next(true),
         err => observer.next(false),
@@ -67,7 +66,7 @@ export class EventoService {
 
   removerUsuarioTransporte(evento) {
     return Observable.create(observer => {
-      this.http.delete(this.apiUrl + '/eventos/' + evento.id + '/transportes', { headers: this.authService.getHeaderToken() })
+      this.apiService.delete('/eventos/' + evento.id + '/transportes', { headers: this.authService.getHeaderToken() })
         .subscribe(
         observer.next(true),
         err => observer.next(false),
@@ -78,7 +77,7 @@ export class EventoService {
 
   registrarPessoaEventoTransporte(transporte) {
     return Observable.create(observer => {
-      this.http.post(this.apiUrl + '/eventos/transportes/'+transporte.id+'/vincular/pessoa', null, { headers: this.authService.getHeaderToken() })
+      this.apiService.post('/eventos/transportes/' + transporte.id + '/vincular/pessoa', null, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
         evento => observer.next(true),
