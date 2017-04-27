@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Headers } from '@angular/http';
+import { ApiService } from './api-service';
 import 'rxjs/add/operator/map';
 
 import { AuthService } from './auth-service';
@@ -8,21 +9,18 @@ import { AuthService } from './auth-service';
 @Injectable()
 export class EmpresaService {
 
-  private apiUrl = 'http://192.168.56.1:9000/v1/api';
-
-  constructor(public http: Http, public authService: AuthService) {
+  constructor(private authService: AuthService, private apiService: ApiService) {
   }
 
   empresasAprovar() {
-    return this.http.get(this.apiUrl + '/empresas/aprovar', { headers: this.authService.getHeaderToken() })
-      .map(res => res.json());
+    return this.apiService.get('/empresas/aprovar', { headers: this.authService.getHeaderToken() }).map(res => res.json());
   }
 
   removerEmpresa(id) {
     return Observable.create(observer => {
-      this.http.delete(this.apiUrl + '/empresas/' + id, { headers: this.authService.getHeaderToken() })
+      this.apiService.delete('/empresas/' + id, { headers: this.authService.getHeaderToken() })
         .subscribe(
-        empresa => observer.next(true),
+        res => observer.next(true),
         err => observer.next(false),
         () => observer.complete()
         );
@@ -31,7 +29,7 @@ export class EmpresaService {
 
   aprovarEmpresa(id) {
     return Observable.create(observer => {
-      this.http.post(this.apiUrl + '/empresas/'+id+'/aprovar', null, { headers: this.authService.getHeaderToken() })
+      this.apiService.post('/empresas/' + id + '/aprovar', null, { headers: this.authService.getHeaderToken() })
         .map(res => res.json())
         .subscribe(
         empresa => observer.next(true, empresa),
