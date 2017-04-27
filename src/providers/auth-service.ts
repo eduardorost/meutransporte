@@ -10,26 +10,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
 
-  constructor(private apiService: ApiService) { }
-
-  public login(credentials) {
-    if (credentials.username === null || credentials.password === null) {
-      return Observable.throw("é obrigatório inserir as credenciais.");
-    } else {
-      return Observable.create(observer => {
-        this.apiService.get('/login', { headers: this.getHeaderBasicAuth(credentials) })
-          .subscribe(
-            res => {
-              this.saveSession(res.headers.get("x-auth-token"));
-              this.saveUsuario(res.text());
-              observer.next({allowed: true}); 
-            },
-            err => observer.next({allowed: false, message: err.json().message}),
-            () => observer.complete()
-          );
-      });
-    }
-  }
+  constructor() { }
 
   public getSession() : string {
       return localStorage.getItem('X-AUTH-TOKEN');
@@ -61,19 +42,19 @@ export class AuthService {
     return headers;
   }
 
-  private getHeaderBasicAuth(credentials) : Headers {
+  public getHeaderBasicAuth(credentials) : Headers {
     let headers = new Headers();
     headers.append("Authorization", "Basic " + btoa(credentials.username + ":" + credentials.password));
     return headers;
   }
 
-  private saveSession(session) {
+  public saveSession(session) {
     if (session) {
       localStorage.setItem('X-AUTH-TOKEN', session);
     }
   }
 
-  private saveUsuario(usuario) {
+  public saveUsuario(usuario) {
     localStorage.setItem('USUARIO', usuario);
   }
 

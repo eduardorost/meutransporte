@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { ApiService } from '../../providers/api-service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 
@@ -11,7 +12,7 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   registerCredentials = { username: '', password: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {
+  constructor(private nav: NavController, private api: ApiService, private auth: AuthService, private alertCtrl: AlertController) {
 
   }
 
@@ -21,7 +22,7 @@ export class LoginPage {
   }
 
   public login() {
-    this.auth.login(this.registerCredentials).subscribe(res => {
+    this.api.login(this.registerCredentials).subscribe(res => {
       if (res.allowed) {
         this.nav.setRoot(HomePage)
       } else {
