@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
@@ -9,11 +9,10 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  loading: Loading;
   registerCredentials = { username: '', password: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-    
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {
+
   }
 
   public createAccount($event) {
@@ -22,13 +21,9 @@ export class LoginPage {
   }
 
   public login() {
-    this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(res => {
       if (res.allowed) {
-        setTimeout(() => {
-          this.loading.dismiss();
-          this.nav.setRoot(HomePage)
-        });
+        this.nav.setRoot(HomePage)
       } else {
         this.showError(res.message);
       }
@@ -38,18 +33,7 @@ export class LoginPage {
       });
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Aguarde...'
-    });
-    this.loading.present();
-  }
-
   showError(text) {
-    setTimeout(() => {
-      this.loading.dismiss();
-    });
-
     let alert = this.alertCtrl.create({
       title: 'Erro',
       subTitle: text,

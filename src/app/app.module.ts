@@ -18,6 +18,7 @@ import { AuthService } from '../providers/auth-service';
 import { UsuarioService } from '../providers/usuario-service';
 import { EventoService } from '../providers/evento-service';
 import { EmpresaService } from '../providers/empresa-service';
+import { ApiService } from '../providers/api-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { EmpresaService } from '../providers/empresa-service';
     ListaTransporteEventoPage,
     EmpresasAprovarPage
   ],
-  providers: [AuthService, UsuarioService, EventoService, EmpresaService]
+  providers: [ApiService, AuthService, UsuarioService, EventoService, EmpresaService]
   // providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule { }

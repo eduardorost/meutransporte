@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Headers } from '@angular/http';
+import { ApiService } from './api-service';
 
 import { Usuario } from '../models/usuario';
 
@@ -8,16 +9,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private apiUrl = 'http://192.168.56.1:9000/v1/api';
 
-  constructor(private http: Http) { }
+  constructor(private apiService: ApiService) { }
 
   public login(credentials) {
     if (credentials.username === null || credentials.password === null) {
       return Observable.throw("é obrigatório inserir as credenciais.");
     } else {
       return Observable.create(observer => {
-        this.http.get(this.apiUrl + '/login', { headers: this.getHeaderBasicAuth(credentials) })
+        this.apiService.get('/login', { headers: this.getHeaderBasicAuth(credentials) })
           .subscribe(
             res => {
               this.saveSession(res.headers.get("x-auth-token"));
