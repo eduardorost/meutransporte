@@ -10,12 +10,17 @@ import { UsuarioService } from '../../providers/usuario-service';
 export class RegisterPage {
   createSuccess = false;
   userType = 'pf';
+  
+  maskCelular = [/[1-9]/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  maskCpf = [/[1-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  maskCnpj = [/[1-9]/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+
   pessoa = { cpf: '', email: '', nome: '', telefone: '' };
   empresa = { cnpj: '', email: '', nome: '', telefone: '', recefitur: '', veiculos: [ { capacidade: '',  modelo: '', placa: '' } ] };
   usuario = { empresa: this.empresa, login: '', pessoa: this.pessoa, senha: '', confirmacaoSenha: '', status: true };
  
   constructor(private nav: NavController, private auth: AuthService, private usuarioService: UsuarioService, private alertCtrl: AlertController) {
-    
+
   }
  
   public register() {

@@ -27,11 +27,11 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="CPF" name="cpf" [(ngModel)]="usuario.pessoa.cpf" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="CPF" name="cpf" [textMask]="{mask: maskCpf}" pattern="([1-9]{3}).([1-9]{3}).([1-9]{3})-([1-9]{2})." [(ngModel)]="usuario.pessoa.cpf" [required]="userType=='pf'"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.pessoa.telefone" [required]="userType=='pf'"></ion-input>
+              <ion-input type="text" placeholder="Telefone" [textMask]="{mask: maskCelular}" pattern="([1-9]{2}) ([1-9]{5})-([1-9]{4})." name="telefone" [(ngModel)]="usuario.pessoa.telefone" [required]="userType=='pf'"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -72,7 +72,7 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="CNPJ" name="cnpj" [(ngModel)]="usuario.empresa.cnpj" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="CNPJ" [textMask]="{mask: maskCnpj}" pattern="([1-9]{2}).([1-9]{3}).([1-9]{3})/([1-9]{4})-([1-9]{2})." name="cnpj" [(ngModel)]="usuario.empresa.cnpj" [required]="userType=='pj'"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -80,7 +80,7 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="Telefone" name="telefone" [(ngModel)]="usuario.empresa.telefone" [required]="userType=='pj'"></ion-input>
+              <ion-input type="text" placeholder="Telefone" [textMask]="{mask: maskCelular}" pattern="([1-9]{2}) ([1-9]{5})-([1-9]{4})." name="telefone" [(ngModel)]="usuario.empresa.telefone" [required]="userType=='pj'"></ion-input>
             </ion-item>
 
             <ion-item>

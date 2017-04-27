@@ -11,11 +11,11 @@ import { EventoService } from '../../../providers/evento-service';
 export class EventoCadastroPage {
 
   constructor(public navCtrl: NavController, public eventoService: EventoService, private alertCtrl: AlertController) {
-
   }
 
   createSuccess = false;
   evento = { nome: '', descricao: '', link: '', data: '', tipo: '', foto: '', endereco: { cep: '', logradouro: '' }, cidade: { nome: '', uf: 'RS' } };
+  maskCep = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
 
   cadastrar() {
     this.eventoService.cadastrarEvento(this.evento).subscribe((success, evento) => {
