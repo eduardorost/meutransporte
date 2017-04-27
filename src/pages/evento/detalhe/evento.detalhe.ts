@@ -18,7 +18,7 @@ export class EventoDetalhePage {
   canRegisterCompany;
   alterSuccess = false;
   usuario;
-  maskCep = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
+  maskCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
 
   constructor(public navCtrl: NavController, public params: NavParams, public eventoService: EventoService, public authService: AuthService, private alertCtrl: AlertController, public modalCtrl: ModalController) {
     this.evento = params.get("evento");

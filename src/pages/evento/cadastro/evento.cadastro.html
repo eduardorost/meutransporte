@@ -51,7 +51,7 @@
 					<ion-item-divider color="light">Endereço</ion-item-divider>
 
 					<ion-item>
-						<ion-input type="text" placeholder="CEP" name="cep" [textMask]="{mask: maskCep}" pattern="([1-9]{5})-([1-9]{3})." [(ngModel)]="evento.endereco.cep"></ion-input>
+						<ion-input type="text" placeholder="CEP" name="cep" [textMask]="{guide: false, mask: maskCep}" pattern="([0-9]{5})-([0-9]{3}).?" [(ngModel)]="evento.endereco.cep"></ion-input>
 					</ion-item>
 
 					<ion-item>
