@@ -123,6 +123,7 @@ export class ApiService {
   }
 
   showLoading() {
+    this.loading.dismissAll();
     this.loading = this.loadingCtrl.create({
       content: 'Aguarde...'
     });
