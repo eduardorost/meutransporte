@@ -16,12 +16,13 @@ export class LoginPage {
 
   }
 
-  public createAccount($event) {
-    $event.preventDefault();
+  public createAccount(event) {
+    event.preventDefault();
     this.nav.push(RegisterPage);
   }
 
-  public login() {
+  public login(event) {
+    event.preventDefault();
     this.api.login(this.registerCredentials).subscribe(res => {
       if (res.allowed) {
         this.nav.setRoot(HomePage)

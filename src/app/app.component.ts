@@ -19,22 +19,22 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, private auth: AuthService) {
+  constructor(public platform: Platform, private authService: AuthService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-
-    //TODO: ESCONDER ADMIN QUANDO NÃO FOR.
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Eventos', component: EventoVisualizacaoPage },
-      { title: 'Admin', component: EmpresasAprovarPage }
+      { title: 'Eventos', component: EventoVisualizacaoPage }
     ];
+
+    if(this.authService.getUsuario() != null && this.authService.getUsuario().login == 'rost')
+      this.pages.push({ title: 'Admin', component: EmpresasAprovarPage });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if (this.auth.getSession())
+      if (this.authService.getSession())
         this.nav.setRoot(HomePage);
       else
         this.nav.setRoot(LoginPage);
