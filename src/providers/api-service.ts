@@ -38,8 +38,13 @@ export class ApiService {
     return Observable.create(observer => {
       this.http.get(this.apiUrl + path, options)
         .subscribe(
-        res => observer.next(res),
+        res => {
+          this.loading.dismiss();
+          observer.next(res);
+         },
         err => {
+          this.loading.dismiss();
+
           if (err.status == 401) {
             this.showPopup("Erro", "Sua sessão expirou.");
             return;
@@ -47,10 +52,7 @@ export class ApiService {
 
           observer.next(err);
         },
-        () => {
-          this.loading.dismiss();
-          observer.complete();
-        }
+        () => observer.complete()
         );
     });
   }
@@ -60,9 +62,13 @@ export class ApiService {
     return Observable.create(observer => {
       this.http.post(this.apiUrl + path, data, options)
         .subscribe(
-        res => observer.next(res),
+        res => {
+          this.loading.dismiss();
+          observer.next(res)
+        },
         err => {
-          if (err.status == 401)
+          this.loading.dismiss();
+
           if (err.status == 401) {
             this.showPopup("Erro", "Sua sessão expirou.");
             return;
@@ -70,10 +76,7 @@ export class ApiService {
 
           observer.next(err);
         },
-        () => {
-          this.loading.dismiss();
-          observer.complete();
-        }
+        () => observer.complete()
         );
     });
   }
@@ -83,8 +86,13 @@ export class ApiService {
     return Observable.create(observer => {
       this.http.put(this.apiUrl + path, data, options)
         .subscribe(
-        res => observer.next(res),
+        res => {
+          this.loading.dismiss();
+          observer.next(res)
+        },
         err => {
+          this.loading.dismiss();
+
           if (err.status == 401) {
             this.showPopup("Erro", "Sua sessão expirou.");
             return;
@@ -92,10 +100,7 @@ export class ApiService {
 
           observer.next(err);
         },
-        () => {
-          this.loading.dismiss();
-          observer.complete();
-        }
+        () => observer.complete()
         );
     });
   }
@@ -105,8 +110,13 @@ export class ApiService {
     return Observable.create(observer => {
       this.http.delete(this.apiUrl + path, options)
         .subscribe(
-        res => observer.next(res),
+        res => {
+          this.loading.dismiss();
+          observer.next(res)
+        },
         err => {
+          this.loading.dismiss();
+
           if (err.status == 401) {
             this.showPopup("Erro", "Sua sessão expirou.");
             return;
@@ -114,10 +124,7 @@ export class ApiService {
 
           observer.next(err);
         },
-        () => {
-          this.loading.dismiss();
-          observer.complete();
-        }
+        () => observer.complete()
         );
     });
   }
@@ -129,7 +136,7 @@ export class ApiService {
     this.loading = this.loadingCtrl.create({
       content: 'Aguarde...'
     });
-    
+
     this.loading.present();
   }
 
